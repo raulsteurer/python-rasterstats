@@ -3,6 +3,7 @@ from __future__ import division
 from shapely.geometry import shape
 from shapely.ops import transform
 from numpy.ma import masked
+from tqdm.auto import tqdm
 from .io import read_features, Raster
 
 
@@ -109,7 +110,8 @@ def gen_point_query(
     interpolate='bilinear',
     property_name='value',
     geojson_out=False,
-    boundless=True):
+    boundless=True,
+    quiet=False):
     """
     Given a set of vector features and a raster,
     generate raster values at each vertex of the geometry
@@ -161,6 +163,9 @@ def gen_point_query(
         Allow features that extend beyond the raster dataset’s extent, default: True
         Cells outside dataset extents are treated as nodata.
 
+    quiet: boolean
+        Disables progressbar.
+
     Returns
     -------
     generator of arrays (if ``geojson_out`` is False)
@@ -170,6 +175,8 @@ def gen_point_query(
         raise ValueError("interpolate must be nearest or bilinear")
 
     features_iter = read_features(vectors, layer)
+    if not quiet:
+        features_iter = tqdm(features_iter)
 
     with Raster(raster, nodata=nodata, affine=affine, band=band) as rast:
 

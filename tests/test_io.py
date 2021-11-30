@@ -5,8 +5,8 @@ import rasterio
 import json
 import pytest
 from shapely.geometry import shape
-from rasterstats.io import read_features, read_featurecollection, Raster  # todo parse_feature
-from rasterstats.io import boundless_array, window_bounds, bounds_window, rowcol
+from src.rasterstats.io import read_features, read_featurecollection, Raster  # todo parse_feature
+from src.rasterstats.io import boundless_array, window_bounds, bounds_window, rowcol
 
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))

@@ -5,3 +5,4 @@ rasterio>=1.0
 cligj>=0.4
 fiona
 simplejson
+tqdm

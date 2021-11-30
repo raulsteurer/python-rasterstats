@@ -4,6 +4,7 @@ from __future__ import division
 
 from affine import Affine
 from shapely.geometry import shape
+from tqdm.auto import tqdm
 import numpy as np
 import platform
 import warnings
@@ -46,7 +47,8 @@ def gen_zonal_stats(
         raster_out=False,
         prefix=None,
         geojson_out=False, 
-        boundless=True, **kwargs):
+        boundless=True, 
+        quiet=False, **kwargs):
     """Zonal statistics of raster values aggregated to vector geometries.
 
     Parameters
@@ -116,6 +118,9 @@ def gen_zonal_stats(
     boundless: boolean
         Allow features that extend beyond the raster dataset’s extent, default: True
         Cells outside dataset extents are treated as nodata.
+
+    quiet: boolean
+        Disables progressbar.
         
     Returns
     -------
@@ -149,6 +154,8 @@ def gen_zonal_stats(
 
     with Raster(raster, affine, nodata, band) as rast:
         features_iter = read_features(vectors, layer)
+        if not quiet:
+            features_iter = tqdm(features_iter)
         for _, feat in enumerate(features_iter):
             geom = shape(feat['geometry'])
 

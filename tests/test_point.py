@@ -1,7 +1,7 @@
 import os
 import rasterio
-from rasterstats.point import point_window_unitxy, bilinear, geom_xys
-from rasterstats import point_query
+from src.rasterstats.point import point_window_unitxy, bilinear, geom_xys
+from src.rasterstats import point_query
 
 raster = os.path.join(os.path.dirname(__file__), 'data/slope.tif')
 raster_nodata = os.path.join(os.path.dirname(__file__), 'data/slope_nodata.tif')
