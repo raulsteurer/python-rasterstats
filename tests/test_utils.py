@@ -2,10 +2,10 @@ import sys
 import os
 import pytest
 from shapely.geometry import LineString
-from src.rasterstats.utils import \
+from rasterstats.utils import \
     stats_to_csv, get_percentile, remap_categories, boxify_points
-from src.rasterstats import zonal_stats
-from src.rasterstats.utils import VALID_STATS
+from rasterstats import zonal_stats
+from rasterstats.utils import VALID_STATS
 
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))

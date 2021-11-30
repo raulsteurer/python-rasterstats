@@ -6,9 +6,9 @@ import json
 import sys
 import numpy as np
 import rasterio
-from src.rasterstats import zonal_stats, raster_stats
-from src.rasterstats.utils import VALID_STATS
-from src.rasterstats.io import read_featurecollection, read_features
+from rasterstats import zonal_stats, raster_stats
+from rasterstats.utils import VALID_STATS
+from rasterstats.io import read_featurecollection, read_features
 from shapely.geometry import Polygon
 from affine import Affine
 
